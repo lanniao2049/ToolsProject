@@ -2,12 +2,10 @@ package com.lanniao.java.time;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.DayOfWeek;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.Month;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.Temporal;
+import java.time.temporal.TemporalAccessor;
 import java.time.temporal.TemporalAdjuster;
 import java.time.temporal.TemporalField;
 import java.util.Calendar;
@@ -17,7 +15,8 @@ public class Java8TimeApi {
     public static void main(String[] args) {
 //        test1();
 //        test2();
-        test3();
+//        test3();
+        test4();
     }
 
 
@@ -79,5 +78,25 @@ public class Java8TimeApi {
         System.out.println("dayOfMonth:"+dayOfMonth+",monthValue:"+monthValue+",year:"+year+",month:"+month+",dayOfWeek:"+dayOfWeek+",dayOfYear:"+
                 dayOfYear+",minute:"+minute);
 
+    }
+
+    /**
+     * UTC时区开始
+     */
+    public static void test4(){
+        Instant now = Instant.now();
+        System.out.println(now);
+        long l = now.toEpochMilli();
+        System.out.println(l);
+        // 计算中国当前的时间
+        OffsetDateTime offsetDateTime = now.atOffset(ZoneOffset.ofHours(8));
+        System.out.println(offsetDateTime);
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM HH:mm:ss");
+        String format = offsetDateTime.format(dateTimeFormatter);
+        System.out.println(format);
+        TemporalAccessor parse = dateTimeFormatter.parse("2022-09 22:54:41");
+        System.out.println(parse);
+        long second = offsetDateTime.toEpochSecond();
+        System.out.println(second);
     }
 }
