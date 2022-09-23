@@ -173,6 +173,23 @@ public class CollectionTest {
 
     }
 
+    /**
+     * Arrays.asList的使用
+     */
+    @Test
+    public void test7(){
+        // 这里是一个对象
+        List<int[]> ints = Arrays.asList(new int[]{2, 3, 4, 5});
+        for (int[] anInt : ints) {
+            System.out.println(anInt);
+        }
+        List<Integer> integers = Arrays.asList(new Integer[]{13, 23, 42, 10});
+        for (Integer integer : integers) {
+            System.out.println(integer);
+        }
+
+    }
+
 }
 
 class Person{
